@@ -11,6 +11,7 @@ namespace Fifth_Lab.Objects
     class Player : BaseObject
     {
         public Action<Marker>? OnMarkerOverlap;
+        public Action<GreenCircle>? OnGreenCircleOverlap;
         public float vX, vY;
 
         //Конструктор
@@ -40,6 +41,10 @@ namespace Fifth_Lab.Objects
             if (obj is Marker)
             {
                 OnMarkerOverlap?.Invoke((Marker)obj);
+            }
+            if (obj is GreenCircle)
+            {
+                OnGreenCircleOverlap?.Invoke((GreenCircle)obj);
             }
         }
     }

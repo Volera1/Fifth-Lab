@@ -32,6 +32,7 @@
             this.pbMain = new System.Windows.Forms.PictureBox();
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.txtLog = new System.Windows.Forms.RichTextBox();
+            this.scoreLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@
             // 
             this.pbMain.Location = new System.Drawing.Point(12, 12);
             this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(882, 297);
+            this.pbMain.Size = new System.Drawing.Size(843, 297);
             this.pbMain.TabIndex = 0;
             this.pbMain.TabStop = false;
             this.pbMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMain_Paint);
@@ -53,17 +54,27 @@
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(900, 12);
+            this.txtLog.Location = new System.Drawing.Point(861, 12);
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(175, 298);
+            this.txtLog.Size = new System.Drawing.Size(214, 298);
             this.txtLog.TabIndex = 1;
             this.txtLog.Text = "";
+            // 
+            // scoreLbl
+            // 
+            this.scoreLbl.AutoSize = true;
+            this.scoreLbl.Location = new System.Drawing.Point(773, 15);
+            this.scoreLbl.Name = "scoreLbl";
+            this.scoreLbl.Size = new System.Drawing.Size(48, 15);
+            this.scoreLbl.TabIndex = 2;
+            this.scoreLbl.Text = "Очки: 0";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1087, 322);
+            this.Controls.Add(this.scoreLbl);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.pbMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -72,6 +83,7 @@
             this.Text = "Обработка событий";
             ((System.ComponentModel.ISupportInitialize)(this.pbMain)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -80,5 +92,6 @@
         private System.Windows.Forms.PictureBox pbMain;
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.RichTextBox txtLog;
+        private System.Windows.Forms.Label scoreLbl;
     }
 }

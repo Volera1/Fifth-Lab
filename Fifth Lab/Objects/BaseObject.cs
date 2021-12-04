@@ -13,6 +13,7 @@ namespace Fifth_Lab.Objects
         public float X;
         public float Y;
         public float Angle;
+        private readonly Random random = new();
 
         //Делегат вызываемый при пересечении двух объектов
         public Action<BaseObject, BaseObject>? OnOverlap;
@@ -25,6 +26,12 @@ namespace Fifth_Lab.Objects
             Angle = angle;
         }
 
+        public void SetRandomPlace(int xMax, int yMax)
+        {
+            X = random.Next(20, xMax - 20);
+            Y = random.Next(20, yMax - 20);
+        }
+
         //Получение расположения объекта
         public Matrix GetTransform()
         {
@@ -35,7 +42,7 @@ namespace Fifth_Lab.Objects
             return matrix;
         }
 
-        //Получение пути к графике у объекта
+        //Получение ссылки на объект
         public virtual GraphicsPath GetGraphicsPath()
         {
             return new GraphicsPath();

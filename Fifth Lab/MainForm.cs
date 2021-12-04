@@ -14,14 +14,32 @@ namespace Fifth_Lab
     public partial class MainForm : Form
     {
         List<BaseObject> objects = new();
+        GreenCircle[] greenCircles;
         Player player;
         Marker? marker;
+        int score;
 
         public MainForm()
         {
             InitializeComponent();
 
+            score = 0;
+            greenCircles = new GreenCircle[2];
             player = new Player(pbMain.Width / 2, pbMain.Height / 2, 0);
+
+            for (int i = 0; i < greenCircles.Length; i++)
+            {
+                greenCircles[i] = new GreenCircle(0, 0, 0);
+                greenCircles[i].SetRandomPlace(pbMain.Width, pbMain.Height);
+                greenCircles[i].OnMinimumSize += (c) =>
+                {
+                    c.SetRandomPlace(pbMain.Width, pbMain.Height);
+                    c.x = 20;
+                    c.y = 20;
+                };
+
+                objects.Add(greenCircles[i]);
+            }
 
             player.OnOverlap += (p, obj) =>
             {
@@ -31,6 +49,13 @@ namespace Fifth_Lab
             {
                 objects.Remove(m);
                 marker = null;
+            };
+            player.OnGreenCircleOverlap += (c) =>
+            {
+                score++;
+                c.SetRandomPlace(pbMain.Width, pbMain.Height);
+                c.x = 20;
+                c.y = 20;
             };
 
             objects.Add(player);
@@ -75,6 +100,11 @@ namespace Fifth_Lab
                     player.Overlap(obj);
                     obj.Overlap(player);
                 }
+                if (obj is GreenCircle)
+                {
+                    var circle = (GreenCircle)obj;
+                    circle.DecreaseSize();
+                }
             }
 
             foreach (var obj in objects)
@@ -82,6 +112,7 @@ namespace Fifth_Lab
                 g.Transform = obj.GetTransform();
                 obj.Render(g);
             }
+            scoreLbl.Text = $"Очки: {score}";
         }
 
         //Тик таймера
